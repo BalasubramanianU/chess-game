@@ -1,0 +1,70 @@
+.square {
+  height: 12.5vh;
+  width: 6.25vw;
+}
+
+.mainContainer {
+  display: flex;
+  height: 100vh;
+  background-color: yellow;
+  justify-content: center;
+  align-items: center;
+}
+
+.boardContainer {
+  width: 50vw;
+}
+
+@media only screen and (max-width: 1281px) {
+  .square {
+    height: 10vh;
+    width: 6vw;
+  }
+}
+@media only screen and (max-width: 1025px) {
+  .boardContainer {
+    width: 60vw;
+  }
+  .square {
+    height: 12vh;
+    width: 7vw;
+  }
+}
+@media only screen and (max-width: 913px) {
+  .boardContainer {
+    width: 90vw;
+  }
+  .square {
+    height: 8vh;
+    width: 11vw;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .boardContainer {
+    width: 90vw;
+  }
+  .square {
+    height: 8vh;
+    width: 11vw;
+  }
+}
+
+@media only screen and (max-width: 419px) {
+  .boardContainer {
+    width: 90vw;
+  }
+  .square {
+    height: 5.5vh;
+    width: 10.5vw;
+  }
+}
+@media only screen and (max-width: 281px) {
+  .boardContainer {
+    width: 90vw;
+  }
+  .square {
+    height: 5vh;
+    width: 11vw;
+  }
+}
