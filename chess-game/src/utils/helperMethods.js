@@ -70,3 +70,18 @@ export const getValidPositions = (board, currentRow, currentColumn) => {
       break;
   }
 };
+
+export const areKingsPresent = (board) => {
+  let count = 0;
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board.length; j++) {
+      if (
+        board[i][j] === Strings.BLACK_KING ||
+        board[i][j] === Strings.WHITE_KING
+      )
+        count += 1;
+    }
+  }
+  if (count === 1) return true;
+  else return false;
+};

@@ -11,7 +11,7 @@ import {
   storeValidPositions,
 } from "./store/actions";
 import { isCheckMate } from "./utils/checkMate";
-import { getValidPositions } from "./utils/helperMethods";
+import { areKingsPresent, getValidPositions } from "./utils/helperMethods";
 import "../src/styles/styles.css";
 
 function App() {
@@ -34,6 +34,10 @@ function App() {
   }, []);
 
   React.useEffect(() => {
+    if (areKingsPresent(board)) {
+      dispatch(initializeBoard());
+      alert("Check Mate! Game Over. Play again");
+    }
     if (isCheckMate(board, row, column, kingPosition, dispatch)) {
       dispatch(initializeBoard());
       alert("Check Mate! Game Over. Play again");
