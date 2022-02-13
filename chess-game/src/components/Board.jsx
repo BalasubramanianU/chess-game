@@ -65,6 +65,7 @@ function Board(props) {
       boardArray.push(
         <div
           className="square"
+          key={[i, j]}
           style={{
             backgroundColor: loadColor(validPositions, colorSwitch, i, j),
           }}
