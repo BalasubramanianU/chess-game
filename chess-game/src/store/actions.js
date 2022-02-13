@@ -12,3 +12,5 @@ export const storeValidPositions = createAction(types.STORE_VALID_POSITIONS);
 export const clearValidPositions = createAction(types.CLEAR_VALID_POSITIONS);
 
 export const getKingPosition = createAction(types.GET_KING_POSITION);
+
+export const kingInCheck = createAction(types.KING_IN_CHECK);

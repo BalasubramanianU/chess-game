@@ -10,6 +10,7 @@ const chessGameReducer = createReducer(
     kingPosition: {},
     canPieceMove: false,
     turn: "WHITE",
+    kingInCheck: false,
   },
   (builder) => {
     builder
@@ -22,14 +23,6 @@ const chessGameReducer = createReducer(
         state.board[0][5] = Strings.BLACK_BISHOP;
         state.board[0][6] = Strings.BLACK_KNIGHT;
         state.board[0][7] = Strings.BLACK_ROOK;
-        state.board[1][0] = Strings.BLACK_SOLDIER;
-        state.board[1][1] = Strings.BLACK_SOLDIER;
-        state.board[1][2] = Strings.BLACK_SOLDIER;
-        state.board[1][3] = Strings.BLACK_SOLDIER;
-        state.board[1][4] = Strings.BLACK_SOLDIER;
-        state.board[1][5] = Strings.BLACK_SOLDIER;
-        state.board[1][6] = Strings.BLACK_SOLDIER;
-        state.board[1][7] = Strings.BLACK_SOLDIER;
         state.board[7][0] = Strings.WHITE_ROOK;
         state.board[7][1] = Strings.WHITE_KNIGHT;
         state.board[7][2] = Strings.WHITE_BISHOP;
@@ -38,14 +31,23 @@ const chessGameReducer = createReducer(
         state.board[7][5] = Strings.WHITE_BISHOP;
         state.board[7][6] = Strings.WHITE_KNIGHT;
         state.board[7][7] = Strings.WHITE_ROOK;
-        state.board[6][0] = Strings.WHITE_SOLDIER;
-        state.board[6][1] = Strings.WHITE_SOLDIER;
-        state.board[6][2] = Strings.WHITE_SOLDIER;
-        state.board[6][3] = Strings.WHITE_SOLDIER;
-        state.board[6][4] = Strings.WHITE_SOLDIER;
-        state.board[6][5] = Strings.WHITE_SOLDIER;
-        state.board[6][6] = Strings.WHITE_SOLDIER;
-        state.board[6][7] = Strings.WHITE_SOLDIER;
+        for (let j = 0; j < state.board.length; j++) {
+          state.board[1][j] = Strings.BLACK_SOLDIER;
+        }
+        for (let j = 0; j < state.board.length; j++) {
+          state.board[6][j] = Strings.WHITE_SOLDIER;
+        }
+        for (let i = 2; i < 6; i++) {
+          for (let j = 0; j < state.board.length; j++) {
+            state.board[i][j] = "";
+          }
+        }
+        state.validPositions = [];
+        state.currentPosition = {};
+        state.kingPosition = {};
+        state.canPieceMove = false;
+        state.turn = "WHITE";
+        state.kingInCheck = false;
       })
       .addCase(types.MOVE_PIECE, (state, action) => {
         const { currentRow, currentColumn, targetRow, targetColumn, piece } =
@@ -78,6 +80,9 @@ const chessGameReducer = createReducer(
             }
           }
         }
+      })
+      .addCase(types.KING_IN_CHECK, (state, action) => {
+        state.kingInCheck = action.payload;
       });
   }
 );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Board from "./components/Board";
 import Strings from "./constants/Strings";
@@ -32,11 +32,30 @@ function App() {
     kingPosition,
     turn,
     validPositions,
+    kingInCheck,
   } = useSelector((state) => state);
+
+  const [row, setRow] = React.useState(0);
+  const [column, setColumn] = React.useState(0);
 
   React.useEffect(() => {
     dispatch(initializeBoard());
   }, []);
+
+  React.useEffect(() => {
+    if (isCheckMate(board, row, column, kingPosition, dispatch)) {
+      dispatch(initializeBoard());
+      alert("Check Mate! Game Over. Play again");
+    }
+  }, [board, kingPosition, kingInCheck]);
+
+  const isKingPiece = (row, column) => {
+    console.log("result 1", turn === "WHITE");
+    console.log("result 2", board[row][column] === Strings.BLACK_KING);
+    return turn === "WHITE"
+      ? board[row][column] === Strings.WHITE_KING
+      : board[row][column] === Strings.BLACK_KING;
+  };
 
   const isClickValid = (validPositions, row, column) => {
     for (let i = 0; i < validPositions.length; i++) {
@@ -52,21 +71,33 @@ function App() {
   };
 
   const handleClick = (row, column) => {
+    setRow(row);
+    setColumn(column);
     if (canPieceMove) {
       if (isClickValid([validPositions], row, column)) {
-        dispatch(
-          movePiece({
-            currentRow: currentPosition.row,
-            currentColumn: currentPosition.column,
-            targetRow: row,
-            targetColumn: column,
-            piece: board[currentPosition.row][currentPosition.column],
-          })
+        console.log("kinginCHeck:", kingInCheck);
+        console.log(
+          "kingPiece:",
+          isKingPiece(currentPosition.row, currentPosition.column)
         );
-        dispatch(storeCurrentPosition({ row, column }));
-        dispatch(clearValidPositions());
-        if (isCheckMate(board, row, column, kingPosition, dispatch))
-          alert("Check Mate! Game Over. Play again");
+        if (
+          kingInCheck &&
+          !isKingPiece(currentPosition.row, currentPosition.column)
+        ) {
+          alert("King is in check");
+        } else {
+          dispatch(
+            movePiece({
+              currentRow: currentPosition.row,
+              currentColumn: currentPosition.column,
+              targetRow: row,
+              targetColumn: column,
+              piece: board[currentPosition.row][currentPosition.column],
+            })
+          );
+          dispatch(storeCurrentPosition({ row, column }));
+          dispatch(clearValidPositions());
+        }
       } else {
         if (board[row][column] === "") {
           dispatch(storeCurrentPosition({ row, column }));
@@ -77,7 +108,11 @@ function App() {
             dispatch(
               storeValidPositions(getValidPositions(board, row, column))
             );
-          else alert(turn + "'s move");
+          else {
+            dispatch(storeCurrentPosition({ row, column }));
+            dispatch(clearValidPositions());
+            alert(turn + "'s move");
+          }
         }
       }
     } else {
@@ -88,10 +123,15 @@ function App() {
         dispatch(storeCurrentPosition({ row, column }));
         if (board[row][column].includes(turn))
           dispatch(storeValidPositions(getValidPositions(board, row, column)));
-        else alert(turn + "'s move");
+        else {
+          dispatch(storeCurrentPosition({ row, column }));
+          dispatch(clearValidPositions());
+          alert(turn + "'s move");
+        }
       }
     }
   };
+
   return (
     <div className="mainContainer">
       <div className="boardContainer">

@@ -17,7 +17,6 @@ function Board(props) {
     if (validPositions.length !== 0) {
       for (let i = 0; i < validPositions.length; i++) {
         const j = 0;
-        console.log("validPositions[i][j][k]:", validPositions[i][j]);
         if (
           validPositions[i][j] === currentRow &&
           validPositions[i][j + 1] === currentColumn
@@ -56,7 +55,6 @@ function Board(props) {
         return "whiteKing icon";
       default:
         return "icon";
-        break;
     }
   };
 
