@@ -6,6 +6,7 @@ function Board(props) {
   const { board, handleClick, validPositions } = props;
   const boardArray = [];
   let colorSwitch = false;
+
   const loadColor = (
     validPositions,
     colorSwitch,
@@ -16,10 +17,9 @@ function Board(props) {
     colorSwitch ? (color = "#eeeed2") : (color = "#769656");
     if (validPositions.length !== 0) {
       for (let i = 0; i < validPositions.length; i++) {
-        const j = 0;
         if (
-          validPositions[i][j] === currentRow &&
-          validPositions[i][j + 1] === currentColumn
+          validPositions[i][0] === currentRow &&
+          validPositions[i][1] === currentColumn
         )
           color = "#f6f669";
       }
