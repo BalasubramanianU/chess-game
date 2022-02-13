@@ -7,8 +7,12 @@ export const blackSoldierValidPositions = (
 ) => {
   const validPosArray = [];
   if (currentRow === 1) {
-    validPosArray.push([currentRow + 1, currentColumn]);
-    validPosArray.push([currentRow + 2, currentColumn]);
+    if (board[currentRow + 1][currentColumn] === "") {
+      validPosArray.push([currentRow + 1, currentColumn]);
+      if (board[currentRow + 2][currentColumn] === "") {
+        validPosArray.push([currentRow + 2, currentColumn]);
+      }
+    }
   } else if (
     isValidCoordinates(currentRow + 1, currentColumn) &&
     board[currentRow + 1][currentColumn] === ""
@@ -36,8 +40,12 @@ export const whiteSoldierValidPositions = (
 ) => {
   const validPosArray = [];
   if (currentRow === 6) {
-    validPosArray.push([currentRow - 1, currentColumn]);
-    validPosArray.push([currentRow - 2, currentColumn]);
+    if (board[currentRow - 1][currentColumn] === "") {
+      validPosArray.push([currentRow - 1, currentColumn]);
+      if (board[currentRow - 2][currentColumn] === "") {
+        validPosArray.push([currentRow - 2, currentColumn]);
+      }
+    }
   } else if (
     isValidCoordinates(currentRow - 1, currentColumn) &&
     board[currentRow - 1][currentColumn] === ""
