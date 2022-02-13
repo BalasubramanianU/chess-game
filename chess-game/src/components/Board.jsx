@@ -1,4 +1,5 @@
 import React from "react";
+import Strings from "../constants/Strings";
 import "../styles/styles.css";
 
 function Board(props) {
@@ -21,24 +22,56 @@ function Board(props) {
           validPositions[i][j] === currentRow &&
           validPositions[i][j + 1] === currentColumn
         )
-          color = "yellow";
+          color = "#f6f669";
       }
     }
     return color;
   };
 
+  const loadPiece = (board, row, column) => {
+    switch (board[row][column]) {
+      case Strings.BLACK_SOLDIER:
+        return "blackPawn icon";
+      case Strings.WHITE_SOLDIER:
+        return "whitePawn icon";
+      case Strings.BLACK_ROOK:
+        return "blackRook icon";
+      case Strings.WHITE_ROOK:
+        return "whiteRook icon";
+      case Strings.BLACK_KNIGHT:
+        return "blackKnight icon";
+      case Strings.WHITE_KNIGHT:
+        return "whiteKnight icon";
+      case Strings.BLACK_BISHOP:
+        return "blackBishop icon";
+      case Strings.WHITE_BISHOP:
+        return "whiteBishop icon";
+      case Strings.BLACK_QUEEN:
+        return "blackQueen icon";
+      case Strings.WHITE_QUEEN:
+        return "whiteQueen icon";
+      case Strings.BLACK_KING:
+        return "blackKing icon";
+      case Strings.WHITE_KING:
+        return "whiteKing icon";
+      default:
+        return "icon";
+        break;
+    }
+  };
+
   for (let i = 0; i <= 7; i++) {
     for (let j = 0; j <= 7; j++) {
       boardArray.push(
-        <button
+        <div
           className="square"
           style={{
             backgroundColor: loadColor(validPositions, colorSwitch, i, j),
           }}
           onClick={() => handleClick(i, j)}
         >
-          {board[i][j] !== "" ? board[i][j] : `${i},${j}`}
-        </button>
+          <div className={loadPiece(board, i, j)}></div>
+        </div>
       );
       colorSwitch = !colorSwitch;
     }

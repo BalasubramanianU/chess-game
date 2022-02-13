@@ -1,12 +1,15 @@
 .square {
+  display: inline-flex;
   height: 12.5vh;
   width: 6.25vw;
+  border: none;
+  align-items: center;
 }
 
 .mainContainer {
   display: flex;
   height: 100vh;
-  background-color: yellow;
+  background-color: #312e2b;
   justify-content: center;
   align-items: center;
 }
@@ -15,12 +18,135 @@
   width: 50vw;
 }
 
-@media only screen and (max-width: 1281px) {
+.icon {
+  height: 8vh;
+  width: 5vw;
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.blackPawn {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/blackPawn.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.blackRook {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/blackRook-new.png");
+  background-repeat: no-repeat;
+  background-size: 10.5vh 5vw;
+  margin-left: 0.6vw;
+}
+
+.blackBishop {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/blackBishop.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.blackKnight {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/blackKnight.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.blackQueen {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/blackQueen.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.blackKing {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/blackKing.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.whitePawn {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/whitePawn.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.whiteRook {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/whiteRook.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.7vw;
+}
+
+.whiteKnight {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/whiteKnight.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.whiteBishop {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/whiteBishop.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.whiteQueen {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/whiteQueen.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+.whiteKing {
+  height: 8vh;
+  width: 5vw;
+  background: url("../assets/whiteKing.svg");
+  background-repeat: no-repeat;
+  background-size: 10vh 4vw;
+  margin-left: 0.5vw;
+}
+
+@media only screen and (max-width: 1281px) and (min-height: 800px) {
   .square {
     height: 10vh;
     width: 6vw;
   }
+  .icon {
+    height: 9vh;
+    width: 10vw;
+    background-size: 10vh 5.5vw;
+    margin-left: 0;
+  }
 }
+
 @media only screen and (max-width: 1025px) {
   .boardContainer {
     width: 60vw;
@@ -29,7 +155,30 @@
     height: 12vh;
     width: 7vw;
   }
+  .icon {
+    height: 10vh;
+    width: 10vw;
+    background-size: 12vh 5vw;
+    margin-left: 0.7vw;
+  }
 }
+
+@media only screen and (max-width: 1025px) and (min-height: 600px) {
+  .boardContainer {
+    width: 60vw;
+  }
+  .square {
+    height: 12vh;
+    width: 7vw;
+  }
+  .icon {
+    height: 10vh;
+    width: 10vw;
+    background-size: 10vh 5.5vw;
+    margin-left: 0.5vw;
+  }
+}
+
 @media only screen and (max-width: 913px) {
   .boardContainer {
     width: 90vw;
@@ -37,6 +186,11 @@
   .square {
     height: 8vh;
     width: 11vw;
+  }
+  .icon {
+    height: 7vh;
+    width: 9vw;
+    background-size: 7vh 10vw;
   }
 }
 
@@ -48,6 +202,12 @@
     height: 8vh;
     width: 11vw;
   }
+  .icon {
+    height: 7vh;
+    width: 9vw;
+    background-size: 7vh 9.5vw;
+    margin-left: 1vw;
+  }
 }
 
 @media only screen and (max-width: 419px) {
@@ -56,7 +216,27 @@
   }
   .square {
     height: 5.5vh;
-    width: 10.5vw;
+    width: 11vw;
+  }
+  .icon {
+    height: 4vh;
+    width: 10vw;
+    background-size: 4.5vh 9vw;
+    margin-left: 0.5vw;
+  }
+}
+@media only screen and (max-width: 376px) {
+  .icon {
+    width: 10vw;
+    background-size: 5vh 8vw;
+    margin-left: 1vw;
+  }
+}
+@media only screen and (max-width: 361px) {
+  .icon {
+    width: 10vw;
+    background-size: 5vh 9vw;
+    margin-left: 0.2vw;
   }
 }
 @media only screen and (max-width: 281px) {
@@ -66,5 +246,11 @@
   .square {
     height: 5vh;
     width: 11vw;
+  }
+  .icon {
+    height: 3.8vh;
+    width: 8vw;
+    background-size: 4vh 9vw;
+    margin-left: 1vw;
   }
 }
