@@ -7,6 +7,6 @@ The website was build using
 - React JS
 - Redux
 # Deployed using
-- Heroku
+- Render
 # Overview
 This web app has responsive web design and it is mobile friendly.
